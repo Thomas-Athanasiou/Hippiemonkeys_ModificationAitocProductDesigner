@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+    Thomas Athanasiou at Hippiemonkeys
+    Copyright (c) 2022 Hippiemonkeys (https://hippiemonkeys.com)
+    Hippiemonkeys_ModificationAitocProductDesigner
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerRenderproduct" type="Hippiemonkeys\Core\Helper\Config\Section\Group">
+        <arguments>
+            <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
+            <argument name="group" xsi:type="string">aitocproductdesigner</argument>
+            <argument name="modificationFlagField" xsi:type="string">renderproduct_active</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerProductOptionsSave" type="Hippiemonkeys\Modification\Helper\Config\Section\Modification">
+        <arguments>
+            <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
+            <argument name="group" xsi:type="string">aitocproductdesigner</argument>
+            <argument name="modificationFlagField" xsi:type="string">productoptionssave_active</argument>
+        </arguments>
+    </virtualType>
+    <type name="Hippiemonkeys\ModificationAitocProductDesigner\Observer\Admin\ProductOptionsSave">
+        <arguments>
+            <argument name="config" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerProductOptionsSave</argument>
+        </arguments>
+    </type>
+    <type name="Hippiemonkeys\ModificationAitocProductDesigner\Block\Product\RenderProduct">
+        <arguments>
+            <argument name="config" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerRenderproduct</argument>
+        </arguments>
+    </type>
+</config>

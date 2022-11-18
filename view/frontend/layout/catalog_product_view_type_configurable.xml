@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+    Thomas Athanasiou at Hippiemonkeys
+    Copyright (c) 2022 Hippiemonkeys (https://hippiemonkeys.com)
+    Hippiemonkeys_Core
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock class="Hippiemonkeys\ModificationAitocProductDesigner\Block\Product\RenderProduct" name="product.info.customproducdesigner" />
+        <referenceBlock class="Hippiemonkeys\ModificationAitocProductDesigner\Block\Product\RenderProduct" name="product.info.customproducdesigner_simple" />
+    </body>
+</page>
