@@ -5,7 +5,7 @@
      * @author Thomas Athanasiou {thomas@hippiemonkeys.com}
      * @link https://hippiemonkeys.com
      * @link https://github.com/Thomas-Athanasiou
-     * @copyright Copyright (c) 2022 Hippiemonkeys Web Inteligence EE All Rights Reserved.
+     * @copyright Copyright (c) 2023 Hippiemonkeys Web Inteligence EE All Rights Reserved.
      * @license http://www.gnu.org/licenses/ GNU General Public License, version 3
      * @package Hippiemonkeys_ModificationAitocProductDesigner
      */
@@ -44,12 +44,7 @@
             ConfigInterface $config
         )
         {
-            parent::__construct(
-                $helper,
-                $productOptionsRepository,
-                $cacheTypeList,
-                $cacheFrontendPool
-            );
+            parent::__construct($helper, $productOptionsRepository, $cacheTypeList, $cacheFrontendPool);
             $this->_config = $config;
         }
 
@@ -58,7 +53,7 @@
          */
         public function execute(Observer $observer)
         {
-            if($this->getIsModificationActive())
+            if($this->getIsActive())
             {
                 if ($observer->getEvent()->getObject()->getEventPrefix() == 'catalog_product')
                 {
@@ -69,6 +64,7 @@
                     {
                         throw new \Magento\Framework\Exception\LocalizedException(__($error));
                     }
+
                     if (isset($data['entity_id']) && !empty($data['images_area']))
                     {
                         $productOptionsRepository = $this->getProductOptionsRepository();
@@ -125,13 +121,13 @@
         }
 
         /**
-         * Gets wether the indexer modification is active or not.
+         * Gets wether the modification is active or not.
          *
          * @access protected
          *
          * @return bool
          */
-        protected function getIsModificationActive(): bool
+        protected function getIsActive(): bool
         {
             return $this->getConfig()->getIsActive();
         }

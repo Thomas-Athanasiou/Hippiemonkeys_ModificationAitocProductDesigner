@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     Thomas Athanasiou at Hippiemonkeys
-    Copyright (c) 2022 Hippiemonkeys (https://hippiemonkeys.com)
+    Copyright (c) 2023 Hippiemonkeys (https://hippiemonkeys.com)
     Hippiemonkeys_ShippingTaxydromiki
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <hippiemonkeys_modification>
-            <aitoccustomproductdesigner>
+            <aitoc_customproductdesigner>
                 <active>1</active>
                 <productoptionssave_active>1</productoptionssave_active>
                 <renderproduct_active>1</renderproduct_active>
                 <renderproduct_attribute_code>stamp_enabled</renderproduct_attribute_code>
-            </aitoccustomproductdesigner>
+            </aitoc_customproductdesigner>
         </hippiemonkeys_modification>
     </default>
 </config>

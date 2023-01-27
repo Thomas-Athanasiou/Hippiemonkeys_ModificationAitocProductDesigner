@@ -1,32 +1,42 @@
 <?xml version="1.0"?>
 <!--
     Thomas Athanasiou at Hippiemonkeys
-    Copyright (c) 2022 Hippiemonkeys (https://hippiemonkeys.com)
+    Copyright (c) 2023 Hippiemonkeys (https://hippiemonkeys.com)
     Hippiemonkeys_ModificationAitocProductDesigner
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerRenderproduct" type="Hippiemonkeys\Core\Helper\Config\Section\Group">
+    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesigner" type="Hippiemonkeys\Core\Helper\Config\Section\Group\Sub">
         <arguments>
             <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
-            <argument name="group" xsi:type="string">aitocproductdesigner</argument>
-            <argument name="modificationFlagField" xsi:type="string">renderproduct_active</argument>
+            <argument name="group" xsi:type="string">aitoc_customproductdesigner</argument>
+            <argument name="activeField" xsi:type="string">active</argument>
+            <argument name="parentConfig" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\General</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerProductOptionsSave" type="Hippiemonkeys\Modification\Helper\Config\Section\Modification">
+    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesignerRenderproduct" type="Hippiemonkeys\Core\Helper\Config\Section\Group\Sub">
         <arguments>
             <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
-            <argument name="group" xsi:type="string">aitocproductdesigner</argument>
+            <argument name="group" xsi:type="string">aitoc_customproductdesigner</argument>
+            <argument name="activeField" xsi:type="string">renderproduct_active</argument>
+            <argument name="parentConfig" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesigner</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesignerProductOptionsSave" type="Hippiemonkeys\Core\Helper\Config\Section\Group\Sub">
+        <arguments>
+            <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
+            <argument name="group" xsi:type="string">aitoc_customproductdesigner</argument>
             <argument name="modificationFlagField" xsi:type="string">productoptionssave_active</argument>
+            <argument name="parentConfig" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesigner</argument>
         </arguments>
     </virtualType>
     <type name="Hippiemonkeys\ModificationAitocProductDesigner\Observer\Admin\ProductOptionsSave">
         <arguments>
-            <argument name="config" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerProductOptionsSave</argument>
+            <argument name="config" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesignerProductOptionsSave</argument>
         </arguments>
     </type>
     <type name="Hippiemonkeys\ModificationAitocProductDesigner\Block\Product\RenderProduct">
         <arguments>
-            <argument name="config" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\ModificationAitocProductDesignerRenderproduct</argument>
+            <argument name="config" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesignerRenderproduct</argument>
         </arguments>
     </type>
 </config>

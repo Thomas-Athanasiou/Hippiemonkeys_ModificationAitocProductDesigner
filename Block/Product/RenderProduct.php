@@ -5,7 +5,7 @@
      * @author Thomas Athanasiou {thomas@hippiemonkeys.com}
      * @link https://hippiemonkeys.com
      * @link https://github.com/Thomas-Athanasiou
-     * @copyright Copyright (c) 2022 Hippiemonkeys Web Inteligence EE All Rights Reserved.
+     * @copyright Copyright (c) 2023 Hippiemonkeys Web Inteligence EE All Rights Reserved.
      * @license http://www.gnu.org/licenses/ GNU General Public License, version 3
      * @package Hippiemonkeys_ModificationAitocProductDesigner
      */
@@ -20,6 +20,10 @@
         Aitoc\CustomProductDesigner\Model\ResourceModel\CustomerDesigns\CollectionFactory as CustomerDesignsCollectionFactory,
         Aitoc\CustomProductDesigner\Model\ResourceModel\Font\CollectionFactory as FontsCollection,
         Aitoc\CustomProductDesigner\Model\ResourceModel\FontFamily\CollectionFactory as FontFamilyCollection,
+        Aitoc\CustomProductDesigner\Block\Product\RenderProduct as ParentRenderProduct,
+        Magento\Framework\Api\DataObjectHelper,
+        Magento\Framework\Api\SimpleDataObjectConverter,
+        Magento\Framework\View\Element\Template\Context,
         Magento\Catalog\Api\Data\ProductInterfaceFactory,
         Magento\Catalog\Helper\Product as ProductHelper,
         Magento\Catalog\Api\Data\ProductInterface,
@@ -27,12 +31,8 @@
         Magento\Catalog\Model\ProductRepository,
         Magento\ConfigurableProduct\Helper\Data as ConfigurableProductHelper,
         Magento\Customer\Model\Session as CustomerSession,
-        Magento\Framework\Api\DataObjectHelper,
-        Magento\Framework\View\Element\Template\Context,
         Magento\Store\Model\StoreManagerInterface,
-        Aitoc\CustomProductDesigner\Block\Product\RenderProduct as ParentRenderProduct,
-        Hippiemonkeys\Core\Api\Helper\ConfigInterface as ConfigInterface,
-        Magento\Framework\Api\SimpleDataObjectConverter;
+        Hippiemonkeys\Core\Api\Helper\ConfigInterface as ConfigInterface;
 
     class RenderProduct
     extends ParentRenderProduct
@@ -107,6 +107,7 @@
                 $prodFactory,
                 $data
             );
+
             $this->_config = $config;
         }
 
@@ -117,17 +118,17 @@
         {
             $json = \json_encode(null);
 
-            if($this->getIsModificationActive())
+            if($this->getIsActive())
             {
                 try
                 {
                     $product = $this->getProductRepository()->getById($this->getProductId());
-                    if(!$this->getVerifyActiveProduct($product))
+                    if($this->getVerifyActiveProduct($product))
                     {
                         $json = parent::renderProductJSON();
                     }
                 }
-                catch (\Exception $e)
+                catch (\Exception)
                 {
                     $json = parent::renderProductJSON();
                 }
@@ -157,11 +158,13 @@
          */
         protected function getVerifyActiveProduct(ProductInterface $product): bool
         {
-            return (bool) $product->{
-                $this->getGetterMethodName(
-                    $this->getVerifyActiveProductAttributeCode()
-                )
-            }();
+            return !(
+                (bool) $product->{
+                    $this->getGetterMethodName(
+                        $this->getVerifyActiveProductAttributeCode()
+                    )
+                }()
+            );
         }
 
         /**
@@ -173,7 +176,7 @@
          */
         private function getGetterMethodName(string $fieldName): string
         {
-            return 'get' . SimpleDataObjectConverter::snakeCaseToUpperCamelCase($fieldName);
+            return \sprintf('get%s', SimpleDataObjectConverter::snakeCaseToUpperCamelCase($fieldName));
         }
 
         /**
@@ -195,7 +198,7 @@
          *
          * @return bool
          */
-        protected function getIsModificationActive(): bool
+        protected function getIsActive(): bool
         {
             return $this->getConfig()->getIsActive();
         }
