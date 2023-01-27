@@ -8,7 +8,7 @@
     <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesigner" type="Hippiemonkeys\Core\Helper\Config\Section\Group\Sub">
         <arguments>
             <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
-            <argument name="group" xsi:type="string">aitoc_customproductdesigner</argument>
+            <argument name="group" xsi:type="string">aitoccustomproductdesigner</argument>
             <argument name="activeField" xsi:type="string">active</argument>
             <argument name="parentConfig" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\General</argument>
         </arguments>
@@ -16,7 +16,7 @@
     <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesignerRenderproduct" type="Hippiemonkeys\Core\Helper\Config\Section\Group\Sub">
         <arguments>
             <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
-            <argument name="group" xsi:type="string">aitoc_customproductdesigner</argument>
+            <argument name="group" xsi:type="string">aitoccustomproductdesigner</argument>
             <argument name="activeField" xsi:type="string">renderproduct_active</argument>
             <argument name="parentConfig" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesigner</argument>
         </arguments>
@@ -24,7 +24,7 @@
     <virtualType name="Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesignerProductOptionsSave" type="Hippiemonkeys\Core\Helper\Config\Section\Group\Sub">
         <arguments>
             <argument name="section" xsi:type="string">hippiemonkeys_modification</argument>
-            <argument name="group" xsi:type="string">aitoc_customproductdesigner</argument>
+            <argument name="group" xsi:type="string">aitoccustomproductdesigner</argument>
             <argument name="modificationFlagField" xsi:type="string">productoptionssave_active</argument>
             <argument name="parentConfig" xsi:type="object">Hippiemonkeys\Modification\Helper\Config\Section\Group\ModificationAitocProductDesigner</argument>
         </arguments>

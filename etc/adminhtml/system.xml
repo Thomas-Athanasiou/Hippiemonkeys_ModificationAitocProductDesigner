@@ -7,7 +7,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
     <system>
         <section id="hippiemonkeys_modification">
-            <group id="aitoc_customproductdesigner" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+            <group id="aitoccustomproductdesigner" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
                 <label>Aitoc Custom Product Designer</label>
                 <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
                     <label>Enabled</label>
